@@ -1,0 +1,37 @@
+training:
+    batch_size: 8
+    epochs: 1000
+    early_stop: 50
+    learning_rate: 0.001
+    optimizer:
+        type: rmsprop
+input_features:
+    -
+        name: Cylinders
+        type: number
+    -
+        name: Displacement
+        type: number
+    -
+        name: Horsepower
+        type: number
+    -
+        name: Weight
+        type: number
+    -
+        name: Acceleration
+        type: number
+    -
+        name: ModelYear
+        type: number
+    -
+        name: Origin
+        type: category
+output_features:
+    -
+        name: MPG
+        type: number
+        optimizer:
+            type: mean_squared_error
+        num_fc_layers: 2
+        output_size: 64
