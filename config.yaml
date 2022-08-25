@@ -1,37 +1,45 @@
 training:
-    batch_size: 8
-    epochs: 1000
-    early_stop: 50
-    learning_rate: 0.001
-    optimizer:
-        type: rmsprop
+  batch_size: 8
+  epochs: 1000
+  early_stop: 50
+  learning_rate: 0.001
+  optimizer:
+    type: rmsprop
 input_features:
-    -
-        name: Cylinders
-        type: number
-    -
-        name: Displacement
-        type: number
-    -
-        name: Horsepower
-        type: number
-    -
-        name: Weight
-        type: number
-    -
-        name: Acceleration
-        type: number
-    -
-        name: ModelYear
-        type: number
-    -
-        name: Origin
-        type: category
+  - name: Cylinders
+    type: number
+  - name: Displacement
+    type: number
+  - name: Horsepower
+    type: number
+  - name: Weight
+    type: number
+  - name: Acceleration
+    type: number
+  - name: ModelYear
+    type: number
+  - name: Origin
+    type: category
 output_features:
-    -
-        name: MPG
-        type: number
-        optimizer:
-            type: mean_squared_error
-        num_fc_layers: 2
-        output_size: 64
+  - name: MPG
+    type: number
+hyperopt:
+  output_feature: MPG
+  parameters:
+    training.learning_rate:
+      space: loguniform
+      lower: 0.0001
+      upper: 0.1
+    training.batch_size:
+      space: randint
+      lower: 4
+      upper: 32
+    # training.optimizer.type:
+    #   space: choice
+    #   values: []
+    # combiner.num_fc_layers:
+    #   space: randint
+    #   lower: 2
+    #   upper: 16
+  goal: minimize
+  metric: loss

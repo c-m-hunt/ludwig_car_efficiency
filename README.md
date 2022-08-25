@@ -14,6 +14,22 @@ ludwig experiment --dataset auto_mpg.csv   --config config.yaml
 
 ```
 
+## Hyperparameter optimisation
+```
+ludwig hyperopt --dataset auto_mpg.csv   --config config.yaml
+```
+
+```
+parent_path=/Users/chris.hunt/Dev/personal/tools/ludwigCarEfficiency
+
+docker run -v ${parent_path}:/src  \
+    ludwigai/ludwig:master \
+    ludwig hyperopt --dataset auto_mpg.csv \
+        --config /src/config.yaml \
+        --output_directory /src/results
+
+```
+
 ## Visualise the training data
 
 ```
