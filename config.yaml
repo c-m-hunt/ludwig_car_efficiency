@@ -23,6 +23,10 @@ input_features:
 output_features:
   - name: MPG
     type: number
+    optimizer:
+      type: mean_squared_error
+    num_fc_layers: 2
+    output_size: 64
 hyperopt:
   output_feature: MPG
   parameters:
@@ -33,10 +37,11 @@ hyperopt:
     training.batch_size:
       space: randint
       lower: 4
-      upper: 32
-    # training.optimizer.type:
-    #   space: choice
-    #   values: []
+      upper: 64
+    output_features.0.num_fc_layers:
+      space: randint
+      lower: 2
+      upper: 64
     # combiner.num_fc_layers:
     #   space: randint
     #   lower: 2
